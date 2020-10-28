@@ -606,18 +606,13 @@ for encoders, decoders, demuxers, muxers, filters, etc.
 </p>
 </dd>
 <dt><samp>filter=<var>filter_name</var></samp></dt>
-<dd><p>Print detailed information about the filter named <var>filter_name</var>. Use the
+<dd><p>Print detailed information about the filter name <var>filter_name</var>. Use the
 <samp>-filters</samp> option to get a list of all filters.
 </p>
 </dd>
 <dt><samp>bsf=<var>bitstream_filter_name</var></samp></dt>
-<dd><p>Print detailed information about the bitstream filter named <var>bitstream_filter_name</var>.
+<dd><p>Print detailed information about the bitstream filter name <var>bitstream_filter_name</var>.
 Use the <samp>-bsfs</samp> option to get a list of all bitstream filters.
-</p>
-</dd>
-<dt><samp>protocol=<var>protocol_name</var></samp></dt>
-<dd><p>Print detailed information about the protocol named <var>protocol_name</var>.
-Use the <samp>-protocols</samp> option to get a list of all protocols.
 </p></dd>
 </dl>
 
@@ -1272,7 +1267,12 @@ will be used.
 <p>Technical note &ndash; attachments are implemented as codec extradata, so this
 option can actually be used to extract extradata from any stream, not just
 attachments.
-</p></dd>
+</p>
+</dd>
+<dt><samp>-noautorotate</samp></dt>
+<dd><p>Disable automatically rotating video based on file metadata.
+</p>
+</dd>
 </dl>
 
 <a name="Video-Options"></a>
@@ -1363,20 +1363,6 @@ stream
 filter the stream.
 </p>
 <p>This is an alias for <code>-filter:v</code>, see the <a href="#filter_005foption">-filter option</a>.
-</p>
-</dd>
-<dt><samp>-autorotate</samp></dt>
-<dd><p>Automatically rotate the video according to file metadata. Enabled by
-default, use <samp>-noautorotate</samp> to disable it.
-</p>
-</dd>
-<dt><samp>-autoscale</samp></dt>
-<dd><p>Automatically scale the video according to the resolution of first frame.
-Enabled by default, use <samp>-noautoscale</samp> to disable it. When autoscale is
-disabled, all output frames of filter graph might not be in the same resolution
-and may be inadequate for some encoder/muxer. Therefore, it is not recommended
-to disable it unless you really know what you are doing.
-Disable autoscale at your own risk.
 </p></dd>
 </dl>
 
@@ -1411,8 +1397,8 @@ factor if negative.
 <dd><p>Force interlacing support in encoder (MPEG-2 and MPEG-4 only).
 Use this option if your input file is interlaced and you want
 to keep the interlaced format for minimum losses.
-The alternative is to deinterlace the input stream by use of a filter
-such as <code>yadif</code> or <code>bwdif</code>, but deinterlacing introduces losses.
+The alternative is to deinterlace the input stream with
+<samp>-deinterlace</samp>, but deinterlacing introduces losses.
 </p></dd>
 <dt><samp>-psnr</samp></dt>
 <dd><p>Calculate PSNR of compressed frames.
@@ -2361,9 +2347,8 @@ not start from timestamp 0, such as transport streams.
 <dt><samp>-thread_queue_size <var>size</var> (<em>input</em>)</samp></dt>
 <dd><p>This option sets the maximum number of queued packets when reading from the
 file or device. With low latency / high rate live streams, packets may be
-discarded if they are not read in a timely manner; setting this value can
-force ffmpeg to use a separate input thread and read packets as soon as they
-arrive. By default ffmpeg only do this if multiple inputs are specified.
+discarded if they are not read in a timely manner; raising this value can
+avoid it.
 </p>
 </dd>
 <dt><samp>-sdp_file <var>file</var> (<em>global</em>)</samp></dt>
@@ -2430,17 +2415,6 @@ this buffer, in packets, for the matching output stream.
 </p>
 <p>The default value of this option should be high enough for most uses, so only
 touch this option if you are sure that you need it.
-</p>
-</dd>
-<dt><samp>-auto_conversion_filters (<em>global</em>)</samp></dt>
-<dd><p>Enable automatically inserting format conversion filters in all filter
-graphs, including those defined by <samp>-vf</samp>, <samp>-af</samp>,
-<samp>-filter_complex</samp> and <samp>-lavfi</samp>. If filter format negotiation
-requires a conversion, the initialization of the filters will fail.
-Conversions can still be performed by inserting the relevant conversion
-filter (scale, aresample) in the graph.
-On by default, to explicitly disable it you need to specify
-<code>-noauto_conversion_filters</code>.
 </p>
 </dd>
 </dl>

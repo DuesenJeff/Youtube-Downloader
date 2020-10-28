@@ -214,24 +214,6 @@ the received message may be truncated causing decoding errors.
 default value is rw_timeout, or 5 seconds if rw_timeout is not set.
 </p>
 </dd>
-<dt><samp>delivery_mode <var>mode</var></samp></dt>
-<dd><p>Sets the delivery mode of each message sent to broker.
-The following values are accepted:
-</p><dl compact="compact">
-<dt>&lsquo;<samp>persistent</samp>&rsquo;</dt>
-<dd><p>Delivery mode set to &quot;persistent&quot; (2). This is the default value.
-Messages may be written to the broker&rsquo;s disk depending on its setup.
-</p>
-</dd>
-<dt>&lsquo;<samp>non-persistent</samp>&rsquo;</dt>
-<dd><p>Delivery mode set to &quot;non-persistent&quot; (1).
-Messages will stay in broker&rsquo;s memory unless the broker is under memory
-pressure.
-</p>
-</dd>
-</dl>
-
-</dd>
 </dl>
 
 <a name="async"></a>
@@ -534,6 +516,12 @@ string describing the libavformat build. (&quot;Lavf/&lt;version&gt;&quot;)
 <dd><p>This is a deprecated option, you can use user_agent instead it.
 </p>
 </dd>
+<dt><samp>timeout</samp></dt>
+<dd><p>Set timeout in microseconds of socket I/O operations used by the underlying low level
+operation. By default it is set to -1, which means that the timeout is
+not specified.
+</p>
+</dd>
 <dt><samp>reconnect_at_eof</samp></dt>
 <dd><p>If set then eof is treated like an error and causes reconnection, this is useful
 for live / endless streams.
@@ -632,31 +620,6 @@ to 0 it won&rsquo;t, if set to -1 it will try to send if it is applicable. Defau
 value is -1.
 </p>
 </dd>
-<dt><samp>auth_type</samp></dt>
-<dd>
-<p>Set HTTP authentication type. No option for Digest, since this method requires
-getting nonce parameters from the server first and can&rsquo;t be used straight away like
-Basic.
-</p>
-<dl compact="compact">
-<dt><samp>none</samp></dt>
-<dd><p>Choose the HTTP authentication type automatically. This is the default.
-</p></dd>
-<dt><samp>basic</samp></dt>
-<dd>
-<p>Choose the HTTP basic authentication.
-</p>
-<p>Basic authentication sends a Base64-encoded string that contains a user name and password
-for the client. Base64 is not a form of encryption and should be considered the same as
-sending the user name and password in clear text (Base64 is a reversible encoding).
-If a resource needs to be protected, strongly consider using an authentication scheme
-other than basic authentication. HTTPS/TLS should be used with basic authentication.
-Without these additional security enhancements, basic authentication should not be used
-to protect sensitive or valuable information.
-</p></dd>
-</dl>
-
-</dd>
 </dl>
 
 <a name="HTTP-Cookies"></a>
@@ -720,10 +683,6 @@ audio/mpeg.
 <dt><samp>legacy_icecast</samp></dt>
 <dd><p>This enables support for Icecast versions &lt; 2.4.0, that do not support the
 HTTP PUT method but the SOURCE method.
-</p>
-</dd>
-<dt><samp>tls</samp></dt>
-<dd><p>Establish a TLS (HTTPS) connection to Icecast.
 </p>
 </dd>
 </dl>

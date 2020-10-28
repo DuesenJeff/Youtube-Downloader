@@ -1,12 +1,12 @@
-FFmpeg 64-bit static Windows builds from www.gyan.dev
+FFmpeg 64-bit static Windows build from www.gyan.dev
 
-Version: 2020-09-20-git-ef29e5bf42-full_build-www.gyan.dev
+Version: 4.3.1-2020-10-01-full_build-www.gyan.dev
 
 License: GPL v3
 
-Source Code: https://github.com/FFmpeg/FFmpeg/commit/ef29e5bf42
+Source Code: https://github.com/FFmpeg/FFmpeg/commit/8a2acdc6da
 
-git-full build configuration: 
+release-full build configuration: 
 
     --enable-gpl
     --enable-version3
@@ -31,7 +31,6 @@ git-full build configuration:
     --enable-libdav1d
     --enable-libzvbi
     --enable-librav1e
-    --enable-libsvtav1
     --enable-libwebp
     --enable-libx264
     --enable-libx265
@@ -55,8 +54,6 @@ git-full build configuration:
     --enable-d3d11va
     --enable-dxva2
     --enable-libmfx
-    --enable-libglslang
-    --enable-vulkan
     --enable-libcdio
     --enable-libgme
     --enable-libmodplug
@@ -67,7 +64,6 @@ git-full build configuration:
     --enable-libtheora
     --enable-libtwolame
     --enable-libvo-amrwbenc
-    --enable-libwavpack
     --enable-libilbc
     --enable-libgsm
     --enable-libopencore-amrnb

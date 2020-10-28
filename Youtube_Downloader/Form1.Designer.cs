@@ -39,6 +39,8 @@
             this.FileNameBox = new System.Windows.Forms.TextBox();
             this.DownloadButton = new System.Windows.Forms.Button();
             this.VideoLocation = new System.Windows.Forms.SaveFileDialog();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.LogBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // LinkLabel
@@ -136,11 +138,30 @@
             // 
             this.VideoLocation.FileOk += new System.ComponentModel.CancelEventHandler(this.VideoLocation_FileOk);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(39, 402);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(362, 23);
+            this.progressBar1.TabIndex = 10;
+            // 
+            // LogBox
+            // 
+            this.LogBox.Location = new System.Drawing.Point(440, 203);
+            this.LogBox.Name = "LogBox";
+            this.LogBox.ReadOnly = true;
+            this.LogBox.Size = new System.Drawing.Size(386, 240);
+            this.LogBox.TabIndex = 11;
+            this.LogBox.Text = "";
+            this.LogBox.TextChanged += new System.EventHandler(this.LogBox_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(861, 487);
+            this.Controls.Add(this.LogBox);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.DownloadButton);
             this.Controls.Add(this.FileNameBox);
             this.Controls.Add(this.FileNameLabel);
@@ -171,6 +192,8 @@
         private System.Windows.Forms.TextBox FileNameBox;
         private System.Windows.Forms.Button DownloadButton;
         private System.Windows.Forms.SaveFileDialog VideoLocation;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.RichTextBox LogBox;
     }
 }
 

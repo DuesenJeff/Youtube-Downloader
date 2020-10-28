@@ -1549,13 +1549,6 @@ compatibility with software that only supports a single audio stream in AVI
 (see <a href="ffmpeg-filters.html#amerge">(ffmpeg-filters)the &quot;amerge&quot; section in the ffmpeg-filters manual</a>).
 </p>
 </dd>
-<dt><samp>flipped_raw_rgb</samp></dt>
-<dd><p>If set to true, store positive height for raw RGB bitmaps, which indicates
-bitmap is stored bottom-up. Note that this option does not flip the bitmap
-which has to be done manually beforehand, e.g. by using the vflip filter.
-Default is <var>false</var> and indicates bitmap is stored top down.
-</p>
-</dd>
 </dl>
 
 <span id="chromaprint"></span><a name="chromaprint-1"></a>
@@ -1762,11 +1755,8 @@ treated as average segment duration when <var>use_template</var> is enabled and
 <dd><p>Use persistent HTTP connections. Applicable only for HTTP output.
 </p></dd>
 <dt><samp>hls_playlist <var>hls_playlist</var></samp></dt>
-<dd><p>Generate HLS playlist files as well. The master playlist is generated with the filename <var>hls_master_name</var>.
+<dd><p>Generate HLS playlist files as well. The master playlist is generated with the filename master.m3u8.
 One media playlist file is generated for each stream with filenames media_0.m3u8, media_1.m3u8, etc.
-</p></dd>
-<dt><samp>hls_master_name <var>file_name</var></samp></dt>
-<dd><p>HLS master playlist name. Default is &quot;master.m3u8&quot;.
 </p></dd>
 <dt><samp>streaming <var>streaming</var></samp></dt>
 <dd><p>Enable (1) or disable (0) chunk streaming mode of output. In chunk streaming
@@ -1881,11 +1871,6 @@ adjusting playback latency and buffer occupancy during normal playback by client
 <dt><samp>max_playback_rate <var>max_playback_rate</var></samp></dt>
 <dd><p>Set the maximum playback rate indicated as appropriate for the purposes of automatically
 adjusting playback latency and buffer occupancy during normal playback by clients.
-</p>
-</dd>
-<dt><samp>update_period <var>update_period</var></samp></dt>
-<dd><p>Set the mpd update period ,for dynamic content.
- The unit is second.
 </p>
 </dd>
 </dl>
@@ -3023,14 +3008,6 @@ disposition default exists, no subtitle track will be marked as default.
 flag is set in the disposition of the corresponding stream.
 </p></dd>
 </dl>
-
-</dd>
-<dt><samp>flipped_raw_rgb</samp></dt>
-<dd><p>If set to true, store positive height for raw RGB bitmaps, which indicates
-bitmap is stored bottom-up. Note that this option does not flip the bitmap
-which has to be done manually beforehand, e.g. by using the vflip filter.
-Default is <var>false</var> and indicates bitmap is stored top down.
-</p>
 </dd>
 </dl>
 
@@ -3998,12 +3975,6 @@ certain (usually permanent) errors the recovery is not attempted even when
 <dt><samp>restart_with_keyframe <var>bool</var></samp></dt>
 <dd><p>Specify whether to wait for the keyframe after recovering from
 queue overflow or failure. This option is set to 0 (false) by default.
-</p>
-</dd>
-<dt><samp>timeshift <var>duration</var></samp></dt>
-<dd><p>Buffer the specified amount of packets and delay writing the output. Note that
-<var>queue_size</var> must be big enough to store the packets for timeshift. At the
-end of the input the fifo buffer is flushed at realtime speed.
 </p>
 </dd>
 </dl>
