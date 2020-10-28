@@ -98,11 +98,23 @@ namespace Youtube_Downloader
             info.Arguments = string.Format(@"./scripts/youtube.py ""{0}""", currentLink);
             info.UseShellExecute = false;
             info.RedirectStandardOutput = true;
+            info.RedirectStandardError = true;
             info.WorkingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             info.CreateNoWindow = true;
             Process p = Process.Start(info);
-            StreamReader reader = p.StandardOutput;
-            string result = reader.ReadToEnd();
+            StreamReader reader = p.StandardError;
+            string s = "";
+
+            while (!p.HasExited)
+            {
+                if(s != reader.ReadLine())
+                {
+                    LogBox.Text += s;
+                }
+
+                s = reader.ReadLine();
+            }
+
             p.WaitForExit();
         }
 
@@ -263,11 +275,25 @@ namespace Youtube_Downloader
                     info.FileName = "./ffmpeg/bin/ffmpeg.exe";
                     info.Arguments = string.Format(@"-i ""{0}"" -y ""{1}""", videoLocation, VideoLocation.FileName.Replace("\\", "/"));
                     info.UseShellExecute = false;
-                    info.RedirectStandardOutput = true;
+                    info.CreateNoWindow = true;
+                    info.RedirectStandardError = true;
                     info.WorkingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                     Process p = Process.Start(info);
-                    StreamReader reader = p.StandardOutput;
+                    StreamReader reader = p.StandardError;
+                    string s = reader.ReadLine();
+                    while (!p.HasExited)
+                    {
+                        if (s != reader.ReadLine())
+                        {
+                            LogBox.Text += s;
+                        }
+
+                        s = reader.ReadLine();
+                    }
+
                     p.WaitForExit();
+
+                    progressBar1.Value = 100;
                 }
             }
         }
